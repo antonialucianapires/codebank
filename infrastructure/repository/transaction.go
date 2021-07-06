@@ -11,7 +11,7 @@ type TransactionRespositoryDb struct {
 	db *sql.DB
 }
 
-func newTransactionRepositoryDb(db *sql.DB) * TransactionRespositoryDb  {
+func NewTransactionRepositoryDb(db *sql.DB) *TransactionRespositoryDb {
 	return &TransactionRespositoryDb{db: db}
 }
 
