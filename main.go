@@ -6,6 +6,7 @@ import (
 	"github.com/antonialucianapires/codebank/domain"
 	"github.com/antonialucianapires/codebank/infrastructure/repository"
 	"github.com/antonialucianapires/codebank/usecase"
+	_ "github.com/lib/pq"
 	"log"
 )
 
@@ -37,7 +38,7 @@ func setupTransactionUseCase(db *sql.DB) usecase.UseCaseTransaction {
 
 func setupDb() *sql.DB {
 	psqlInfo := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s sslmode=disable",
-		"db",
+		"172.17.0.1",
 		"5430",
 		"postgres",
 		"root",
@@ -45,8 +46,7 @@ func setupDb() *sql.DB {
 	)
 	db, err := sql.Open("postgres", psqlInfo)
 	if err != nil {
-		log.Fatal("error connection to database")
+		log.Fatal("error connection to database", err.Error())
 	}
 	return db
 }
-
